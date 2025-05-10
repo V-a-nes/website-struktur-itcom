@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Community Universitas Jember' - Komunitas Informasi dan Teknologi</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Variabel Warna */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+
+        /* Global Styles */
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 15px auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .btn {
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .member-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .member-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .member-card:hover .member-image img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 20px;
+        }
+
+        .member-info h3 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .member-info p {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .program-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .program-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+
+        .program-content {
+            padding: 20px;
+        }
+
+        .program-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .program-content p {
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-details div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-details i {
+            margin-right: 15px;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text, .about-image {
+                flex: none;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 30px;
+                transition: all 0.5s ease;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .program-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="C:\Users\LENOVO\Downloads\IT COM LOGO (TRANSPARANT).png">IT <span>COM</span></a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#team">Struktur Kepengurusan</a></li>
+                    <li><a href="#programs">Program Kerja</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Selamat Datang di IT COM </h1>
+                <p>Komunitas yang berada di bawah naungan HME. yang berfokus pada pengembangan keterampilan IT, kolaborasi, dan inovasi untuk menciptakan solusi digital yang bermanfaat bagi masyarakat.</p>
+                <a href="#about" class="btn">Pelajari Lebih Lanjut</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Kami</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>IT COM</h3>
+                    <p>IT COM adalah komunitas teknologi yang didirikan dengan tujuan untuk menciptakan ekosistem digital yang inklusif dan kolaboratif. Kami percaya bahwa teknologi harus dapat diakses oleh semua orang dan digunakan untuk menciptakan dampak positif.</p>
+                    <p>Dengan 15 anggota aktif, kami telah menyelenggarakan  pelatihan, dan proyek kolaboratif yang membantu mengembangkan keterampilan digital anggota kami dan masyarakat sekitar.</p>
+                    <h3>Visi</h3>
+                    <p>Menjadi wadah pengembangan teknologi informasi dan Menyediakan platform untuk berbagi ilmu dan pengalaman .</p>
+                    <h3>Misi</h3>
+                    <P>1.Menyelenggarakan pelatihan secara berkala untuk meningkatkan keterampilan anggota dalam berbagai bidang teknologi informasi.</P>
+                    <p>2.Membentuk forum diskusi dan kelompok belajar dimana anggota dapat berbagi pengetahuan dan pengalaman dalam teknologi informasi.</p>
+                    <p>3.Menyusun nawala bulanan yang berisi panduan teknologi, pembaruan komunitas, serta rekomendasi materi pembelajaran.</p>   
+                </div>
+                <div class="about-image">
+                    <img src="E:\dokume foto IT COM\DSC01015.JPG" alt="Tim IT Com">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="section-title">Struktur Kepengurusan</h2>
+            <div class="team-members">
+                <!-- Ketua -->
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="E:\FOTO KEPENGURUSAN KOMUNITAS IT COM\2.png" alt="Ketua IT Com">
+                    </div>
+                    <div class="member-info">
+                        <h3>Azwa Dwi Abdillah</h3>
+                        <p>Ketua Umum IT COM</p>
+                        <p>Memimpin seluruh kegiatan organisasi dan bertanggung jawab atas visi dan misi IT COM.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wakil Ketua -->
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="E:\FOTO KEPENGURUSAN KOMUNITAS IT COM\3.png" alt="Wakil Ketua IT COM">
+                    </div>
+                    <div class="member-info">
+                        <h3>Wildanun Amien</h3>
+                        <p>Wakil Ketua</p>
+                        <p>Mendampingi ketua dalam menjalankan tugas dan menggantikan ketua ketika berhalangan.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sekretaris -->
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="E:\FOTO KEPENGURUSAN KOMUNITAS IT COM\5.png" alt="Sekretaris IT COM">
+                    </div>
+                    <div class="member-info">
+                        <h3>Nasaka Cendikia</h3>
+                        <p>Sekretaris</p>
+                        <p>Bertanggung jawab atas administrasi organisasi dan dokumentasi kegiatan.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bendahara -->
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="E:\FOTO KEPENGURUSAN KOMUNITAS IT COM\6.png" alt="Bendahara IT COM">
+                    </div>
+                    <div class="member-info">
+                        <h3>Moch. Syahrul Fahri</h3>
+                        <p>Bendahara</p>
+                        <p>Mengelola keuangan organisasi dan membuat laporan keuangan secara transparan.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Biro Akademik -->
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="E:\FOTO KEPENGURUSAN KOMUNITAS IT COM\13.png" alt="Staff Biro Akademik IT COM">
+                    </div>
+                    <div class="member-info">
+                        <h3>Prima Andika Maulana</h3>
+                        <p>Staff Biro Akademik</p>
+                        <p>Menjalankan Program Kerja dan Turut dalam Penyusunan BPK.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="E:\FOTO KEPENGURUSAN KOMUNITAS IT COM\11.png" alt="Koordinator Biro Akademik IT COM">
+                    </div>
+                    <div class="member-info">
+                        <h3>Pariera Vanesa Purbasari</h3>
+                        <p>Koordiantor Biro Akademik</p>
+                        <p>Bertanggung Jawab dalam topik dan Referensi Pembelajaran serta Menyusun BPK (Buku Panduan Komunitas) serta turut andil dalam program riset.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="E:\FOTO KEPENGURUSAN KOMUNITAS IT COM\12.png" alt="Staff Biro Akademik IT COM">
+                    </div>
+                    <div class="member-info">
+                        <h3>Aidatur Rohmaniya Saifani</h3>
+                        <p>Staff Biro Akademik</p>
+                        <p>Menjalankan Program Kerja dan Turut dalam Penyusunan BPK.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+<!--Biro Riset-->
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="E:\FOTO KEPENGURUSAN KOMUNITAS IT COM\16.png" alt="Koordinator Biro Riset">
+                    </div>
+                    <div class="member-info">
+                        <h3>Muhammad Ikbal Azraki </h3>
+                        <p>Koordiantor Biro Riset</p>
+                        <p>Berfokus mengenai program, dan mengurusi segala topik dan referensi Aplikasi Pembelajaran. Serta riset untuk projek kedepannya seperti utnuk pangkas dan Elektro Mengajar.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+    </section>
+
+</div>
+</section>
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <h2 class="section-title">Program Kerja</h2>
+            <div class="program-cards">
+                <!-- Program 1 -->
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="E:\dokume foto IT COM\OWL\WhatsApp Image 2025-05-09 at 22.30.30_36204b0a.jpg" alt="OWL (One Week Learning)">
+                    </div>
+                    <div class="program-content">
+                        <h3>OWL (One Week Learning)</h3>
+                        <p>Program ini merupakan pertemuan antar anggota yang digunakan untuk belajar bersama hingga melakukan evaluasi antar anggota ataupun divisi dalam proses kinerja yang telah atau belum dilakukan.</p>
+                        <a href="#" class="btn">Lihat Jadwal</a>
+                    </div>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="E:\dokume foto IT COM\OWL\IMG_0101.JPG" alt="Elektro Akademik">
+                    </div>
+                    <div class="program-content">
+                        <h3>Elektro Akademik</h3>
+                        <p>Acara tahunan dimana komunitas memaerkan project teknologi.</p>
+                        <a href="#" class="btn">Daftar Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="E:\dokume foto IT COM\OWL\IMG_0080.JPG" alt="Elektro Mengajar">
+                    </div>
+                    <div class="program-content">
+                        <h3>Elektro Mengajar</h3>
+                        <p>Kegiatan ini seperti pengabdian dalam lingkup sekolah, dimana melakukan sosialisasi di sekolah SMA/SMK yang bertujuan memberikan pemahaman siswa dalam bidang IT serta pengenalan Teknik Elektro.</p>
+                        <a href="#" class="btn">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+
+                <!-- Program 4 -->
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="E:\dokume foto IT COM\OWL\IMG_0116.JPG" alt="Pelatihan Komunitas">
+                    </div>
+                    <div class="program-content">
+                        <h3>Pelatihan Komunitas</h3>
+                        <p>Program ini merupakan pelatihan bagi warga teknik elektro dan umum yang bertujuan meningkatkan mahasiswa/i dalam pemrograman/IT dengan mendatangkan pemateri yang berpengalaman di bidangnya.</p>
+                        <a href="#" class="btn">Daftarkan Anak Anda</a>
+                    </div>
+                </div>
+
+                <!-- Program 5 -->
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="E:\dokume foto IT COM\OWL\WhatsApp Image 2025-05-09 at 22.30.32_a0117845.jpg" alt="PANGKAS">
+                    </div>
+                    <div class="program-content">
+                        <h3>PANGKAS</h3>
+                        <p>Program ini merupakan ajang di penghujung tahun diaman melakukan branding dengan menampilkan hasil karya yang dihasilkan selama satu periode. Program ini biasanya terdapat di JLT/EEJ.</p>
+                        <a href="#" class="btn">Gabung Jadi Relawan</a>
+                    </div>
+                </div>
+        
+                <div class="member-card">
+                    <div class="member-image">
+                        <img src="E:\FOTO KEPENGURUSAN KOMUNITAS IT COM\6.png" alt="Bendahara IT COM">
+                    </div>
+                    <div class="member-info">
+                        <h3>Moch. Syahrul Fahri</h3>
+                        <p>Bendahara</p>
+                        <p>Mengelola keuangan organisasi dan membuat laporan keuangan secara transparan.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <p>Kami senang mendengar dari Anda! Silakan hubungi kami melalui informasi di bawah ini atau isi formulir kontak.</p>
+                    
+                    <div class="contact-details">
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Jl. Teknologi No. 123, Kota J, Indonesia</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-phone"></i>
+                            <span>+62 812 3456 7890</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@itcomunej.org</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-clock"></i>
+                            <span>Senin - Jumat: 9:00 - 17:00</span>
+                        </div>
+                    </div>
+
+                    <div class="social-media">
+                        <h4>Media Sosial Kami</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Nama Lengkap" required>
+                        <input type="email" placeholder="Alamat Email" required>
+                        <input type="text" placeholder="Subjek">
+                        <textarea placeholder="Pesan Anda" required></textarea>
+                        <button type="submit" class="btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang IT Comune J</h3>
+                    <p>Komunitas teknologi yang berfokus pada pengembangan keterampilan IT, kolaborasi, dan inovasi untuk menciptakan solusi digital yang bermanfaat bagi masyarakat.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Link Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#team">Struktur Kepengurusan</a></li>
+                        <li><a href="#programs">Program Kerja</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Berlangganan newsletter kami untuk mendapatkan informasi terbaru tentang kegiatan dan program kami.</p>
+                    <form>
+                        <input type="email" placeholder="Alamat Email Anda">
+                        <button type="submit" class="btn">Berlangganan</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 IT Comune J. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navUl = document.querySelector('nav ul');
+
+        mobileMenu.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navUl.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add shadow to header on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
